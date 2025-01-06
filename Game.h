@@ -11,15 +11,23 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+#include "Player.h"
+
 class Game {
-    // Variables
+    // Window & Settings
     sf::RenderWindow* window{};
     sf::VideoMode videoMode;
     sf::Event event{};
 
+    // Entities
+    Player* player;
+
     // Private functions
-    void initVariables();
+    void initSettings();
     void initWindow();
+    void initEntities() const;
+
+    Player* createPlayer() ;
 
 public:
     // Constructors & Destructors

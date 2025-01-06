@@ -4,7 +4,8 @@
 
 #include "Game.h"
 
-void Game::initVariables() {
+
+void Game::initSettings() {
     window = nullptr;
 }
 
@@ -15,14 +16,24 @@ void Game::initWindow() {
     window->setPosition(sf::Vector2i(1920, 0));
 }
 
+void Game::initEntities() const {
+    player->init();
+}
+
+Player* Game::createPlayer() {
+    return new Player("Loco");
+}
+
 // Constructors & Destructors
-Game::Game() {
-    initVariables();
+Game::Game() : player(createPlayer()) {
+    initSettings();
     initWindow();
+    initEntities();
 }
 
 Game::~Game() {
     delete window;
+    delete player;
 }
 
 // Utils
@@ -37,7 +48,12 @@ void Game::pollEvents() {
         switch (event.type) {
             case sf::Event::Closed:
                 window->close();
-            break;
+                break;
+            case sf::Event::KeyPressed:
+                if (event.key.code == sf::Keyboard::Escape) {
+                    window->close();
+                }
+                break;
             default: ;
         }
     }
@@ -49,6 +65,6 @@ void Game::update() {
 
 void Game::render() const {
     window->clear();
-    // Draw
+    window->draw(player->getSprite());
     window->display();
 }
