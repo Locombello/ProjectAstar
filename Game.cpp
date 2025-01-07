@@ -63,19 +63,19 @@ void Game::pollEvents() {
 void Game::update() {
     pollEvents();
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        sf::Vector2f previousPosition = player->getPosition();
+    sf::Vector2f previousPosition = player->getPosition();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         player->setPosition(previousPosition + sf::Vector2f(0.0f, -1.0f));
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        sf::Vector2f previousPosition = player->getPosition();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         player->setPosition(previousPosition + sf::Vector2f(-1.0f, 0.0f));
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        sf::Vector2f previousPosition = player->getPosition();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         player->setPosition(previousPosition + sf::Vector2f(0.0f, 1.0f));
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        sf::Vector2f previousPosition = player->getPosition();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         player->setPosition(previousPosition + sf::Vector2f(1.0f, 0.0f));
-    }
 }
 
 void Game::render() const {
