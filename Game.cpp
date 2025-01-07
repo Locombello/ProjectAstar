@@ -14,6 +14,7 @@ void Game::initWindow() {
     videoMode.height = 1080;
     window = new sf::RenderWindow(videoMode, "ProjectAstar", sf::Style::Titlebar | sf::Style::Close);
     window->setPosition(sf::Vector2i(1920, 0));
+    window->setFramerateLimit(144);
 }
 
 void Game::initEntities() const {
@@ -61,6 +62,20 @@ void Game::pollEvents() {
 
 void Game::update() {
     pollEvents();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+        sf::Vector2f previousPosition = player->getPosition();
+        player->setPosition(previousPosition + sf::Vector2f(0.0f, -1.0f));
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        sf::Vector2f previousPosition = player->getPosition();
+        player->setPosition(previousPosition + sf::Vector2f(-1.0f, 0.0f));
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+        sf::Vector2f previousPosition = player->getPosition();
+        player->setPosition(previousPosition + sf::Vector2f(0.0f, 1.0f));
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        sf::Vector2f previousPosition = player->getPosition();
+        player->setPosition(previousPosition + sf::Vector2f(1.0f, 0.0f));
+    }
 }
 
 void Game::render() const {

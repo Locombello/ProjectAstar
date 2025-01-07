@@ -16,6 +16,14 @@ sf::RectangleShape& Player::getSprite() {
     return sprite;
 }
 
+sf::Vector2f Player::getPosition() const {
+    return sprite.getPosition();
+}
+
+void Player::setPosition(const sf::Vector2f &position) {
+    sprite.setPosition(position);
+}
+
 void Player::init() {
     sprite.setPosition(sf::Vector2f(10.0f, 10.0f));
     sprite.setSize(sf::Vector2f(100.0f, 100.0f));
